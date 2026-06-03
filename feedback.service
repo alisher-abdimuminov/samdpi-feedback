@@ -1,0 +1,17 @@
+[Unit]
+Description=feedback daemon
+Requires=feedback.socket
+After=network.target
+
+[Service]
+User=root
+Group=root
+WorkingDirectory=/home/ali/feedback/
+ExecStart=/home/ali/feedback/.venv/bin/gunicorn \
+          --access-logfile - \
+          --workers 3 \
+          --bind unix:/run/feedback.sock \
+          config.wsgi:application
+
+[Install]
+WantedBy=multi-user.target

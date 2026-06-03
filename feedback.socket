@@ -1,0 +1,8 @@
+[Unit]
+Description=feedback socket
+
+[Socket]
+ListenStream=/run/feedback.sock
+
+[Install]
+WantedBy=sockets.target
